@@ -20,23 +20,23 @@
             <p class="title">Координати точки A</p>
             <p align="center">
             Введіть широту 
-            <h:inputText value="#{distanceCalculation.latitudeA}"/>
+            <h:inputText value="#{distanceCalculation.latitudeA}" required="true"/>
             </p>
              <p align="center">   
             Введіть довготу
-                <h:inputText value="#{distanceCalculation.longitudeA}"/>
+                <h:inputText value="#{distanceCalculation.longitudeA}" required="true"/>
                 </p>
             <p class="title">Координати точки B</p>
             <p align="center">
             Введіть широту
-            <h:inputText value="#{distanceCalculation.latitudeB}"/>
+            <h:inputText value="#{distanceCalculation.latitudeB}" required="true"/>
             </p>
             <p align="center">
             Введіть довготу
-            <h:inputText value="#{distanceCalculation.longitudeB}"/>
+            <h:inputText value="#{distanceCalculation.longitudeB}" required="true"/>
             </p>
             <p class="title">
-                <h:commandButton value="Обчислити" action="#{distanceCalculation.Calculation()}">
+                <h:commandButton value="Обчислити" action="#{distanceCalculation.Calculation()}" >
                     <f:ajax execute="@form" render="@form"/>                
                 </h:commandButton>
             </p>
@@ -48,6 +48,10 @@
             </p>
         </h:form>
         </div>
+            <div class="footer">
+              При виникнені помилки перевірте правельність введених даних. 
+              Допускається тільки введення цифр (0-9), а також знаків "." і ","
+            </div>
         </div>
     </h:body>
 </html>
