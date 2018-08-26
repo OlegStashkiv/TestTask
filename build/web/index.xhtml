@@ -40,18 +40,11 @@
                     <f:ajax execute="@form" render="@form"/>                
                 </h:commandButton>
             </p>
-            <p class="title">
-                <h:outputText value="#{distanceCalculation.message}"/>
-            </p>
             <p align="center">
-                <h:outputText value="#{distanceCalculation.result}"/>
+                <h:outputText value="#{distanceCalculation.result}"/>              
             </p>
         </h:form>
         </div>
-            <div class="footer">
-              При виникнені помилки перевірте правельність введених даних. 
-              Допускається тільки введення цифр (0-9), а також знаків "." і ","
-            </div>
         </div>
     </h:body>
 </html>

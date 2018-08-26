@@ -7,6 +7,7 @@ package web.test_task.operation.distance_calculation;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.el.EvaluationException;
 import javax.inject.Named;
 
 
@@ -22,8 +23,8 @@ public class DistanceCalculation implements Serializable {
     private String latitudeB;
     private String longitudeB;
     private String result;
-    private String message;
-    
+
+    public static final String ANSI_RED = "\u001B[31m";
     public static final double R = 6000;
     
 
@@ -72,13 +73,7 @@ public class DistanceCalculation implements Serializable {
         this.result = result;
     }
 
-    public String getMessage() {
-        return message;
-    }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
    
   
@@ -93,6 +88,7 @@ public class DistanceCalculation implements Serializable {
     double a;
     
     //search From chord length
+    try{
     x = (Math.cos(Math.toRadians(Double.parseDouble(latitudeB))) * Math.cos(Math.toRadians(Double.parseDouble(longitudeB)))) - (Math.cos(Math.toRadians(Double.parseDouble(latitudeA)))* Math.cos(Math.toRadians(Double.parseDouble(longitudeA)))); 
     y = (Math.cos(Math.toRadians(Double.parseDouble(latitudeB)))* Math.sin(Math.toRadians(Double.parseDouble(longitudeB)))) - (Math.cos(Math.toRadians(Double.parseDouble(latitudeA)))* Math.sin(Math.toRadians(Double.parseDouble(longitudeA))));
     z  = Math.sin(Math.toRadians(Double.parseDouble(latitudeB))) - Math.sin(Math.toRadians(Double.parseDouble(latitudeA)));
@@ -100,7 +96,12 @@ public class DistanceCalculation implements Serializable {
     a = 2 * Math.asin(c/2); 
     d = R * a;
    
-   result = String.format("%.2f", d) + " км";
-   message = "Результат";}
+   result = "Результат: " + String.format("%.2f", d) + " км";
+   }
+    catch (NumberFormatException  e){
+        result ="*Упс виникла помилка. Перевірте правельність введених даних. \n" +
+"              Допускається тільки введення цифр (0-9), а також знаків \".\" і \",\". Як приклад 4.5 | 3,2 | 2";
+    }
+    }
 
 }
